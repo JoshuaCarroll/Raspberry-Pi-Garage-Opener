@@ -1,9 +1,9 @@
 <?php 
 	if(isset($_GET['trigger']) && $_GET['trigger'] == 1) {
 		error_reporting(E_ALL);
-		exec('gpio write 7 0');
+		exec('gpio -g write 18 0');
 		usleep(1000000);
-		exec('gpio write 7 1');
+		exec('gpio -g write 18 1');
 	}
 ?>
 <!DOCTYPE html>
