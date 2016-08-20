@@ -1,9 +1,9 @@
 <?php 
 	if(isset($_GET['trigger']) && $_GET['trigger'] == 1) {
 		error_reporting(E_ALL);
-		exec('gpio -g write 18 0');
+		exec('gpio -g write 18 off');
 		usleep(1000000);
-		exec('gpio -g write 18 1');
+		exec('gpio -g write 18 on');
 	}
 ?>
 <!DOCTYPE html>
@@ -21,7 +21,7 @@
 	</head>
 	<body>
 		<div class='awrap'>
-      <a href='/?trigger=1'></a>
+            <a href='/?trigger=1'></a>
 		</div>
 	</body>
 </html>
