@@ -1,11 +1,3 @@
-<?php 
-	if(isset($_GET['trigger']) && $_GET['trigger'] == 1) {
-		error_reporting(E_ALL);
-		exec('gpio -g write 18 off');
-		usleep(1000000);
-		exec('gpio -g write 18 on');
-	}
-?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -20,8 +12,18 @@
 
 	</head>
 	<body>
-		<div class='awrap'>
-            <a href='?trigger=1'></a>
+        <div id="divStatus">Garage is <span id="spnStatus"><?php
+            
+include "filename.php";
+$fileReader = fopen($filename, "r+") or die("Unable to open file for reading.");
+$status = trim(fread($fileReader,filesize($filename)));
+fclose($fileReader);
+echo $status;
+            
+?></span>.
+        </div>
+		<div>
+            <button id="btnTrigger"> </button>
 		</div>
 	</body>
 </html>
