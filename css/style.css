@@ -1,29 +1,21 @@
-html,body {
-	margin:0px;
-	padding:0px;
-	background:#231F1F;
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic,700italic);
+body {font-family: "Source Sans Pro"; text-align: center; }
+body, textarea {background-color: #1e1f22; color: #bfbfbf;}
+
+#divStatus { margin-bottom: 2em; }
+
+button:focus {
+    outline: none;
 }
-div.awrap{
-	position:absolute;
-	height:400px;
-	top:50%;
-	width:100%;
-	margin:-200px 0px 0px;
-	text-align:center;
+
+button { 
+    width: 400px;
+    height: 200px;
+    border: 0;
 }
-a {
-	display:inline-block;
-	width:90%;
-	height:400px;
-	background:#B5B1B1;
-	-moz-box-shadow:    inset 0 0 10px #000000;
-	-webkit-box-shadow: inset 0 0 10px #000000;
-	box-shadow:         inset 0 0 10px #000000;
-	-webkit-tap-highlight-color: rgba(255, 255, 255, 0); 
-}	
-a:active {
-	background:#ADAAAA;
-	-moz-box-shadow:    inset 0 0 50px #000000;
-	-webkit-box-shadow: inset 0 0 50px #000000;
-	box-shadow:         inset 0 0 50px #000000;
+button {
+    background: linear-gradient(to bottom,  rgba(68,68,68,1) 0%,rgba(103,103,103,1) 50%,rgba(68,68,68,1) 100%);
+}
+button:active {
+    background: linear-gradient(to bottom,  rgba(103,103,103,1) 0%,rgba(68,68,68,1) 50%,rgba(82,82,82,1) 100%);
 }
