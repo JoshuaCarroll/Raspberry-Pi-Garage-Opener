@@ -1,6 +1,7 @@
 $(document).ready(function() {
-	$('a').click(function(e) {
-		e.preventDefault();
-		$.get("?trigger=1");
+	$('#btnTrigger').click(function(e) {
+        $.get("trigger.php", function(data) {
+            $("#spnStatus").html(data);
+        });
 	});
 });
