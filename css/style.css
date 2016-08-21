@@ -6,7 +6,10 @@ body {
 }
 body, textarea {background-color: #1e1f22; color: #bfbfbf;}
 
-#divStatus { margin-bottom: 2em; }
+#divStatus { 
+    margin-top: 4em;
+    margin-bottom: 2em; 
+}
 
 button:focus {
     outline: none;
