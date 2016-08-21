@@ -1,5 +1,9 @@
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic,700italic);
-body {font-family: "Source Sans Pro"; text-align: center; }
+body {
+    font-family: "Source Sans Pro"; 
+    text-align: center; 
+    font-size: 48px;
+}
 body, textarea {background-color: #1e1f22; color: #bfbfbf;}
 
 #divStatus { margin-bottom: 2em; }
@@ -9,8 +13,8 @@ button:focus {
 }
 
 button { 
-    width: 400px;
-    height: 200px;
+    width: 600px;
+    height: 400px;
     border: 0;
 }
 button {
