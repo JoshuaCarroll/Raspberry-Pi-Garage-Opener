@@ -2,10 +2,6 @@
 # /etc/init.d/garagerelay
 ### BEGIN INIT INFO
 # Provides:          garagerelay
-# Required-Start:    $local_fs $network
-# Required-Stop:     $local_fs
-# Default-Start:     2 3 4 5
-# Default-Stop:      0 1 6
 # Short-Description: garagerelay
 # Description:       Garage relay service
 ### END INIT INFO
