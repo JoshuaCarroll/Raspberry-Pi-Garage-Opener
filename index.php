@@ -16,11 +16,11 @@ include 'utilities.php';
 		<meta name="apple-mobile-web-app-capable" content="yes">	
 		<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>    
 		<script type="text/javascript">
+            var garageURL = "<?php echo Settings::$garageURL; ?>";
+            
             $(document).ready(function() {
                 $('#btnTrigger').click(function(e) {
-                    var strUrl = "<?php
-                    echo Settings::$garageURL;
-                    ?>trigger.php?u=" + $("#txtUsername").val() + "&p=" + $("#txtPassword").val();
+                    var strUrl = garageURL + "trigger.php?u=" + $("#txtUsername").val() + "&p=" + $("#txtPassword").val();
                     $.get(strUrl, function(objResponse) {
                         $("#spnStatus").html(objResponse.status);
                         if (objResponse.error) {
@@ -33,17 +33,16 @@ include 'utilities.php';
                         }
                     });
                 });
+                
+                $.getJSON(garageURL + "status.php", function(result){
+                    $('#spnStatus').html = result.status;
+                });
             });
         </script>    
         
 	</head>
 	<body>
-        <div id="divStatus">Garage is <span id="spnStatus">
-<?php
-            
-echo file_get_contents(Settings::$garageURL . "status.php");
-            
-?></span>.
+        <div id="divStatus">Garage is <span id="spnStatus"></span>.
         </div>
         <div id="divErrors"></div>
         <div>
