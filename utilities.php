@@ -44,7 +44,7 @@ class Settings {
 
     public static function initializeStStateArr() {
         if (!isset(self::$garageURL)) {
-            self::$showMetricAndCelsiusMeasurements = getSetting("GarageURL");
+            self::$garageURL = getSetting("GarageURL");
         }
     }
 }
