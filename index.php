@@ -38,7 +38,8 @@ include 'utilities.php';
         
 	</head>
 	<body>
-        <div id="divStatus">Garage is <span id="spnStatus"><?php 
+        <div id="divStatus">Garage is <span id="spnStatus">
+<?php 
             
 echo file_get_contents(Settings::$garageURL . "status.php");
             
