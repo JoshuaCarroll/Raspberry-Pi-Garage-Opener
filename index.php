@@ -8,19 +8,39 @@
 		<link rel="stylesheet" href="css/style.css" type="text/css">
 		<meta name="apple-mobile-web-app-capable" content="yes">	
 		<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>    
-		<script type="text/javascript" src="js/script.js"></script>    
-
+		<script type="text/javascript">
+            $(document).ready(function() {
+                $('#btnTrigger').click(function(e) {
+                    var strUrl = "<?php
+                    echo Settings::$garageURL;
+                    ?>trigger.php?u=" + $("#txtUsername").val() + "&p=" + $("#txtPassword").val();
+                    $.get(strUrl, function(objResponse) {
+                        $("#spnStatus").html(objResponse.status);
+                        if (objResponse.error) {
+                            $("#divErrors").html(objResponse.error);
+                            $("#divErrors").show();
+                        }
+                        else {
+                            $("#divErrors").html("");
+                            $("#divErrors").hide();
+                        }
+                    });
+                });
+            });
+        </script>    
+        
 	</head>
 	<body>
-        <div id="divStatus">Garage is <span id="spnStatus"><?php
+        <div id="divStatus">Garage is <span id="spnStatus"><?php 
             
-include "filename.php";
-$fileReader = fopen($filename, "r+") or die("Unable to open file for reading.");
-$status = trim(fread($fileReader,filesize($filename)));
-fclose($fileReader);
-echo $status;
+echo file_get_contents(Settings::$garageURL . "status.php");
             
 ?></span>.
+        </div>
+        <div id="divErrors"></div>
+        <div>
+            <input watermark="Username" type="text" id="txtUsername" name="username"><br>
+            <input watermark="Password" type="password" id="txtPassword" name="password">
         </div>
 		<div>
             <button id="btnTrigger"> </button>
