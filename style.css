@@ -11,6 +11,13 @@ body, textarea {background-color: #1e1f22; color: #bfbfbf;}
     margin-bottom: 2em; 
 }
 
+#divErrors {
+    background-color: darkmagenta;
+    border: 1px #000000 solid;
+    color: white;
+    display: none;
+}
+
 button:focus {
     outline: none;
 }
