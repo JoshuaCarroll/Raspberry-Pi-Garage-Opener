@@ -72,12 +72,12 @@
                                     $binMask = "1" . $binMask;
                                 }
                                 else {
-                                    $binMask = "0" . $binMask
+                                    $binMask = "0" . $binMask;
                                 }
                             }
                         
                             if (substr($binMask, date("N")-1, 1) = 0) {
-                                $error = "You are not approved for access on this day of the week."
+                                $error = "You are not approved for access on this day of the week.";
                             }
                             else {
                                 $allowed = true;
