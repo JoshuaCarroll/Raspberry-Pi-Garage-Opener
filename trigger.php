@@ -122,7 +122,7 @@
 
                 fclose($fileWriter);
             }
-            catch {
+            catch (Exception $e) {
                 $error = "Unable to open status file for writing. Door status incorrect. Continuing...";
             }
             
