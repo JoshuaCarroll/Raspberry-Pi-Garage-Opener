@@ -20,15 +20,15 @@ include 'utilities.php';
             
             $(document).ready(function() {
                 $('#btnTrigger').click(function(e) {
-                    var strUrl = garageURL + "trigger.php?u=" + $("#txtUsername").val() + "&p=" + $("#txtPassword").val();
+                    var strUrl = garageURL + "trigger.php?u=" + $("#txtUsername").val() + "&p=" + md5($("#txtPassword").val());
                     $.get(strUrl, function(objResponse) {
-                        $("#spnStatus").html(objResponse.status);
-                        if (objResponse.error) {
-                            $("#divErrors").html(objResponse.error);
+                        $("#spnStatus").text(objResponse.status);
+                        if (objResponse.error != "") {
+                            $("#divErrors").text(objResponse.error);
                             $("#divErrors").show();
                         }
                         else {
-                            $("#divErrors").html("");
+                            $("#divErrors").text("");
                             $("#divErrors").hide();
                         }
                     });

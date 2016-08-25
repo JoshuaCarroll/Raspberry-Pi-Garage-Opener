@@ -14,72 +14,76 @@
     }
     else {
         // prepare and bind
-        $stmt = $dbConnection->prepare('SELECT `id`,`FirstName`,`LastName`,`ValidStartTime`,`ValidEndTime`,`ValidStartDate`,`ValidEndDate`,`ValidDaysOfWeek` FROM `Garage`.`Users` WHERE `Username` = ? AND `Password` = ?;');
-        $stmt->bind_param('ss', $user, $pass);
+        $stmt = $dbConnection->prepare('SELECT `id`,`FirstName`,`LastName`,`ValidStartTime`,`ValidEndTime`,`ValidStartDate`,`ValidEndDate`,`ValidDaysOfWeek`,`Password` FROM `Garage`.`Users` WHERE `Username` = ?;');
+        $stmt->bind_param('ss', $user);
         $user = $_GET['u'];
-        $pass = $_GET['p'];
         $stmt->execute();
-        $result = $stmt->get_result();
+        $stmt->bind_result($outId, $outFirstName, $outLastName, $outValidStartTime, $outValidEndTime, $outValidStartDate, $outValidEndDate, $outValidDaysOfWeek, $outPassword);
         
-        if ($result->num_rows > 0) {
-            $row = mysqli_fetch_array($result);
-
-            // Check dates
-            $str_date = $row["ValidStartDate"];
-            $startDate = DateTime::createFromFormat('m/d/Y', $str_date);
-
-            $str_date = $row["ValidEndDate"];;
-            $endDate = DateTime::createFromFormat('m/d/Y', $str_date);
-            
-            $todaysDate = date('m/d/Y');
-            
-            if ($startDate > $todaysDate) {     
-                $error = "You are not approved for access until " . $startDate . ".";
+        if ($stmt->fetch()) {
+            //Check password
+            if (md5($outPassword) != $_GET["p"]) {
+                $error = "No record found with that username/password.";
             }
             else {
-                if ($todaysDate > $endDate) {
-                    $error = "Your access has expired.";
+                // Check dates
+                $str_date = $outValidStartDate;
+                $startDate = DateTime::createFromFormat('m/d/Y', $str_date);
+
+                $str_date = $outValidEndDate;
+                $endDate = DateTime::createFromFormat('m/d/Y', $str_date);
+            
+                $todaysDate = date('m/d/Y');
+            
+                if ($startDate > $todaysDate) {     
+                    $error = "You are not approved for access until " . $startDate . ".";
                 }
                 else {
-                    // Check time
-                    $str_time = $row["ValidStartTime"];
-                    $startTime = DateTime::createFromFormat('H:i:s', $str_time);
-
-                    $str_time = $row["ValidEndTime"];;
-                    $endTime = DateTime::createFromFormat('H:i:s', $str_time);
-                    
-                    $currentTime = date("H:i:s");
-                    
-                    if ( ($startTime > $currentTime) || ($endTime < $currentTime) ) {
-                        $error = "You are not approved for access during this time of day.";
+                    if ($todaysDate > $endDate) {
+                        $error = "Your access has expired.";
                     }
                     else {
-                        // Check days of week
-                        $binMask = "";
-                        
-                        $dayMask = $row["ValidDaysOfWeek"];
-                        
-                        for ($x=6; $x >= 0; $x--) {
-                            if ($dayMask >= 2^x) {
-                                $dayMask = $dayMask - (2^x);
-                                $binMask = "1" . $binMask;
-                            }
-                            else {
-                                $binMask = "0" . $binMask
-                            }
-                        }
-                        
-                        if (substr($binMask, date("N")-1, 1) = 0) {
-                            $error = "You are not approved for access on this day of the week."
+                        // Check time
+                        $str_time = $outValidStartTime;
+                        $startTime = DateTime::createFromFormat('H:i:s', $str_time);
+
+                        $str_time = $outValidEndTime;
+                        $endTime = DateTime::createFromFormat('H:i:s', $str_time);
+                    
+                        $currentTime = date("H:i:s");
+                    
+                        if ( ($startTime > $currentTime) || ($endTime < $currentTime) ) {
+                            $error = "You are not approved for access during this time of day.";
                         }
                         else {
-                            $allowed = true;
+                            // Check days of week
+                            $binMask = "";
+                        
+                            $dayMask = $outValidDaysOfWeek;
+                        
+                            for ($x=6; $x >= 0; $x--) {
+                                if ($dayMask >= 2^x) {
+                                    $dayMask = $dayMask - (2^x);
+                                    $binMask = "1" . $binMask;
+                                }
+                                else {
+                                    $binMask = "0" . $binMask
+                                }
+                            }
+                        
+                            if (substr($binMask, date("N")-1, 1) = 0) {
+                                $error = "You are not approved for access on this day of the week."
+                            }
+                            else {
+                                $allowed = true;
+                            }
                         }
                     }
                 }
+            }
         }
         else {
-            $error = "No record found with that username/password.";
+            $error = "No record found with that username.";
         }
     }
 
@@ -92,7 +96,7 @@
             fclose($fileReader);
         }
         catch {
-            $error = "Unable to open status file for reading.";
+            $error = "Unable to open status file for reading. Door status incorrect. Continuing...";
         }
         
         if ($error == "") {
@@ -111,7 +115,7 @@
                 fclose($fileWriter);
             }
             catch {
-                $error = "Unable to open status file for writing."
+                $error = "Unable to open status file for writing. Door status incorrect. Continuing..."
             }
             
             error_reporting(E_ALL);
@@ -126,14 +130,10 @@
         
         
     ///TODO: Write out JSON object    
-    
-    if ($error != "") {
-        
-    }
-        
-    if ($response != "") {
-        
-    }
+    echo "{ ";
+    echo "\"error\" : \"" . $error . "\","; 
+    echo "\"status\" : \"" . $response . "\"";
+    echo "}";
         
     ///TODO: Report action to IFTTT
 ?>
