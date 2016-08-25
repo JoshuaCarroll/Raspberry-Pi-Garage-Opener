@@ -141,9 +141,9 @@
         
     ///TODO: Write out JSON object    
     echo "{ ";
-    echo "\"error\" : \"" . $error . "\","; 
+    echo "\"errorMessage\" : \"" . $error . "\", "; 
     echo "\"status\" : \"" . $response . "\"";
-    echo "}";
+    echo " }";
         
     ///TODO: Report action to IFTTT
 ?>

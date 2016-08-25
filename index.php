@@ -30,10 +30,10 @@ include 'utilities.php';
                             $("#spnStatus").text(objResponse.status);
                         }
                         
-                        if ((objResponse.error) && (objResponse.error != "")) {
+                        if ((objResponse.errorMessage) && (objResponse.errorMessage != "")) {
                             console.log("Error is not empty");
                             $("#divErrors").show();
-                            $("#divErrors").text(objResponse.error);
+                            $("#divErrors").text(objResponse.errorMessage);
                         }
                         else {
                             $("#divErrors").text("");
