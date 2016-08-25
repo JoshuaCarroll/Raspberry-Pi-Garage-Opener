@@ -103,7 +103,7 @@
             $status = trim(fread($fileReader,filesize($filename)));
             fclose($fileReader);
         }
-        catch {
+        catch (Exception $e) {
             $error = "Unable to open status file for reading. Door status incorrect. Continuing...";
         }
         
@@ -123,7 +123,7 @@
                 fclose($fileWriter);
             }
             catch {
-                $error = "Unable to open status file for writing. Door status incorrect. Continuing..."
+                $error = "Unable to open status file for writing. Door status incorrect. Continuing...";
             }
             
             error_reporting(E_ALL);
@@ -133,7 +133,7 @@
         }
     }
     elseif ($error == "") {
-        $error = "An unspecified error occurred."
+        $error = "An unspecified error occurred.";
     }
         
         
