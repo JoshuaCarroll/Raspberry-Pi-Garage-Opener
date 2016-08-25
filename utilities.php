@@ -21,13 +21,11 @@ function getSetting($setting) {
         $returnValue = "ERROR";
     }
     else {
-        $result = $con->query("SELECT Value FROM Settings WHERE Key = '$setting' ");
-        if( !$result ) {
-          $returnValue = "";
-        }
-        else {
-          $returnValue = $result->fetch_object()->VALUE;
-        }
+        if ($stmt = $con->prepare("SELECT `Value` FROM Settings WHERE `Key` = ?")) {
+        $stmt->bind_param("s", $setting);
+        $stmt->execute();
+        $stmt->bind_result($returnValue);
+	}
     }
     return $returnValue;
 }
