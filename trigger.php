@@ -47,11 +47,11 @@
                 $todaysDate = date('m/d/Y');
             
                 if ($startDate > $todaysDate) {     
-                    $error = "You are not approved for access until " . $startDate->format('l, m d, Y') . " at " . $startTime->format('g:i a') . ".";
+                    $error = $startDate . " > " . $todaysDate . "  You are not approved for access until " . $startDate->format('l, M d, Y') . " at " . $startTime->format('g:i a') . ".";
                 }
                 else {
                     if ($todaysDate > $endDate) {
-                        $error = "Your access expired on " . $endDate->format('l, m d, Y') . " at " . $endTime->format('g:i a') . ".";
+                        $error = "Your access expired on " . $endDate->format('l, M d, Y') . " at " . $endTime->format('g:i a') . ".";
                     }
                     else {
                         // Check time
@@ -76,7 +76,7 @@
                                 }
                             }
                             
-                            $dayNumber = date("N") - 1;
+                            $dayNumber = date("w");
                             $strThisDayPermission = substr($binMask, $dayNumber, 1);
                             
                             if ($strThisDayPermission = 0) {
