@@ -99,7 +99,7 @@
         include "filename.php";
         
         try {
-            $fileReader = fopen($filename, "r+")
+            $fileReader = fopen($filename, "r+");
             $status = trim(fread($fileReader,filesize($filename)));
             fclose($fileReader);
         }
