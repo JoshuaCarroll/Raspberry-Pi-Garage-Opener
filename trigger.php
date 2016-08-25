@@ -44,7 +44,7 @@
                 $str_time = $outValidEndTime;
                 $endTime = DateTime::createFromFormat('H:i:s', $str_time);
             
-                $now = date();
+                $todaysDate = date_create();
             
                 if ($startDate > $todaysDate) {     
                     $error = $startDate->format('m/d/Y') . " > " . $todaysDate->format('m/d/Y') . "  You are not approved for access until " . $startDate->format('l, M d, Y') . " at " . $startTime->format('g:i a') . ".";
