@@ -24,6 +24,8 @@ include 'utilities.php';
                 $('#btnTrigger').click(function(e) {
                     var strUrl = garageURL + "trigger.php?u=" + $("#txtUsername").val() + "&p=" + CryptoJS.MD5($("#txtPassword").val());
                     $.get(strUrl, function(objResponse) {
+                        console.log(objResponse);
+                        
                         $("#spnStatus").text(objResponse.status);
                         if (objResponse.error != "") {
                             $("#divErrors").text(objResponse.error);
