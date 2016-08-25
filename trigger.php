@@ -37,6 +37,12 @@
 
                 $str_date = $outValidEndDate;
                 $endDate = DateTime::createFromFormat('m/d/Y', $str_date);
+                
+                $str_time = $outValidStartTime;
+                $startTime = DateTime::createFromFormat('H:i:s', $str_time);
+
+                $str_time = $outValidEndTime;
+                $endTime = DateTime::createFromFormat('H:i:s', $str_time);
             
                 $todaysDate = date('m/d/Y');
             
@@ -49,12 +55,6 @@
                     }
                     else {
                         // Check time
-                        $str_time = $outValidStartTime;
-                        $startTime = DateTime::createFromFormat('H:i:s', $str_time);
-                        
-                        $str_time = $outValidEndTime;
-                        $endTime = DateTime::createFromFormat('H:i:s', $str_time);
-                        
                         $currentTime = date("H:i:s");
                         
                         if ( ($startTime > $currentTime) || ($endTime < $currentTime) ) {
