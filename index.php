@@ -28,8 +28,8 @@ include 'utilities.php';
                         
                         $("#spnStatus").text(objResponse.status);
                         if (objResponse.error != "") {
-                            $("#divErrors").text(objResponse.error);
                             $("#divErrors").show();
+                            $("#divErrors").text(objResponse.error);
                         }
                         else {
                             $("#divErrors").text("");
@@ -49,7 +49,7 @@ include 'utilities.php';
         <div id="divStatus">Garage is <span id="spnStatus"></span>.
         </div>
         <div id="divErrors"></div>
-        <div>
+        <div id="divLogin">
             <input placeholder="Username" type="text" id="txtUsername" name="username">&nbsp;
             <input placeholder="Password" type="password" id="txtPassword" name="password">
         </div>
