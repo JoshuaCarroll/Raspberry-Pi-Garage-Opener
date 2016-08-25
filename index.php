@@ -35,7 +35,7 @@ include 'utilities.php';
                 });
                 
                 $.getJSON(garageURL + "status.php", function(result){
-                    $('#spnStatus').html = result.status;
+                    $('#spnStatus').text(result.status);
                 });
             });
         </script>    
