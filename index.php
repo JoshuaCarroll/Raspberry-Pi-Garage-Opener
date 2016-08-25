@@ -22,6 +22,8 @@ include 'utilities.php';
             
             $(document).ready(function() {
                 $('#btnTrigger').click(function(e) {
+                    
+                    // /////////////////////////////// -- Change this to server side so it can be called outside of home network
                     var strUrl = garageURL + "trigger.php?u=" + $("#txtUsername").val() + "&p=" + CryptoJS.MD5($("#txtPassword").val());
                     $.getJSON(strUrl, function(data) {
                         console.log(data);
@@ -40,6 +42,7 @@ include 'utilities.php';
                             $("#divErrors").hide();
                         }
                     });
+                    // \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -- Change this to server side so it can be called outside of home network
                 });
                 
                 $.getJSON(garageURL + "status.php", function(data){
