@@ -22,10 +22,16 @@ function getSetting($setting) {
     }
     else {
         if ($stmt = $con->prepare("SELECT `Value` FROM Settings WHERE `Key` = ?")) {
-        $stmt->bind_param("s", $setting);
-        $stmt->execute();
-        $stmt->bind_result($returnValue);
-	}
+            $stmt->bind_param("s", $setting);
+            $stmt->execute();
+            $stmt->bind_result($outValue);
+            
+            while ($stmt->fetch()) 
+            {
+                $returnValue = $outValue;
+                break; // Only one anyway. Just keeping the while for an example.
+            }
+        }
     }
     return $returnValue;
 }
