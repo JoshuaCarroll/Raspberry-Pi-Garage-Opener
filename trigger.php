@@ -41,24 +41,24 @@
                 $todaysDate = date('m/d/Y');
             
                 if ($startDate > $todaysDate) {     
-                    $error = "You are not approved for access until " . $startDate . ".";
+                    $error = "You are not approved for access until " . $startDate->format('l, m d, Y') . " at " . $startTime->format('g:i a') . ".";
                 }
                 else {
                     if ($todaysDate > $endDate) {
-                        $error = "Your access has expired.";
+                        $error = "Your access expired on " . $endDate->format('l, m d, Y') . " at " . $endTime->format('g:i a') . ".";
                     }
                     else {
                         // Check time
                         $str_time = $outValidStartTime;
                         $startTime = DateTime::createFromFormat('H:i:s', $str_time);
-
+                        
                         $str_time = $outValidEndTime;
                         $endTime = DateTime::createFromFormat('H:i:s', $str_time);
-                    
+                        
                         $currentTime = date("H:i:s");
-                    
+                        
                         if ( ($startTime > $currentTime) || ($endTime < $currentTime) ) {
-                            $error = "You are not approved for access during this time of day.";
+                            $error = "You are only approved for access between " . $startTime->format('g:i a') . " and " . $endTime->format('g:i a') . ".";
                         }
                         else {
                             // Check days of week
