@@ -14,13 +14,14 @@ include 'utilities.php';
 		<link rel="apple-touch-icon" sizes="114x114" href="apple-touch-icon-iphone-retina-display.png" />		
 		<link rel="stylesheet" href="style.css" type="text/css">
 		<meta name="apple-mobile-web-app-capable" content="yes">	
-		<script type="text/javascript" src="jquery-1.10.2.min.js"></script>    
+		<script type="text/javascript" src="jquery-1.10.2.min.js"></script>
+        <script type="text/javascript" src="md5.js"></script>
 		<script type="text/javascript">
             var garageURL = "<?php echo Settings::$garageURL; ?>";
             
             $(document).ready(function() {
                 $('#btnTrigger').click(function(e) {
-                    var strUrl = garageURL + "trigger.php?u=" + $("#txtUsername").val() + "&p=" + md5($("#txtPassword").val());
+                    var strUrl = garageURL + "trigger.php?u=" + $("#txtUsername").val() + "&p=" + CryptoJS.MD5($("#txtPassword").val());
                     $.get(strUrl, function(objResponse) {
                         $("#spnStatus").text(objResponse.status);
                         if (objResponse.error != "") {
