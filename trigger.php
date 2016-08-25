@@ -19,7 +19,7 @@
     }
     else {
         // prepare and bind
-        $stmt = $dbConnection->prepare('SELECT `id`,`FirstName`,`LastName`,`ValidStartTime`,`ValidEndTime`,`ValidStartDate`,`ValidEndDate`,`ValidDaysOfWeek`,`Password` FROM `Garage`.`Users` WHERE `Username` = ?;');
+        $stmt = $con->prepare('SELECT `id`,`FirstName`,`LastName`,`ValidStartTime`,`ValidEndTime`,`ValidStartDate`,`ValidEndDate`,`ValidDaysOfWeek`,`Password` FROM `Garage`.`Users` WHERE `Username` = ?;');
         $stmt->bind_param('ss', $user);
         $user = $_GET['u'];
         $stmt->execute();
