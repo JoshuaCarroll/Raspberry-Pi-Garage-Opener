@@ -26,8 +26,11 @@ include 'utilities.php';
                     $.get(strUrl, function(objResponse) {
                         console.log(objResponse);
                         
-                        $("#spnStatus").text(objResponse.status);
-                        if (objResponse.error != "") {
+                        if ((objResponse.status) && (objResponse.status != "")) {
+                            $("#spnStatus").text(objResponse.status);
+                        }
+                        
+                        if ((objResponse.error) && (objResponse.error != "")) {
                             $("#divErrors").show();
                             $("#divErrors").text(objResponse.error);
                         }
