@@ -23,17 +23,17 @@ include 'utilities.php';
             $(document).ready(function() {
                 $('#btnTrigger').click(function(e) {
                     var strUrl = garageURL + "trigger.php?u=" + $("#txtUsername").val() + "&p=" + CryptoJS.MD5($("#txtPassword").val());
-                    $.get(strUrl, function(objResponse) {
-                        console.log(objResponse);
+                    $.getJSON(strUrl, function(data) {
+                        console.log(data);
                         
-                        if ((objResponse.status) && (objResponse.status != "")) {
-                            $("#spnStatus").text(objResponse.status);
+                        if ((data.status) && (data.status != "")) {
+                            $("#spnStatus").text(data.status);
                         }
                         
-                        if ((objResponse.errorMessage) && (objResponse.errorMessage != "")) {
+                        if ((data.errorMessage) && (data.errorMessage != "")) {
                             console.log("Error is not empty");
                             $("#divErrors").show();
-                            $("#divErrors").text(objResponse.errorMessage);
+                            $("#divErrors").text(data.errorMessage);
                         }
                         else {
                             $("#divErrors").text("");
@@ -42,8 +42,8 @@ include 'utilities.php';
                     });
                 });
                 
-                $.getJSON(garageURL + "status.php", function(result){
-                    $('#spnStatus').text(result.status);
+                $.getJSON(garageURL + "status.php", function(data){
+                    $('#spnStatus').text(data.status);
                 });
             });
         </script>    
