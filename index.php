@@ -46,6 +46,13 @@ include 'utilities.php';
                     $('#spnStatus').text(data.status);
                 });
             });
+            
+            function logout() {
+                document.cookie = "u=;expires=Wed 01 Jan 1970";
+                document.cookie = "p=;expires=Wed 01 Jan 1970";
+                document.cookie = "user=;expires=Wed 01 Jan 1970";
+                location.reload();
+            }
         </script>    
         
 	</head>
@@ -54,8 +61,22 @@ include 'utilities.php';
         </div>
         <div id="divErrors"></div>
         <div id="divLogin">
-            <input placeholder="Username" type="text" id="txtUsername" name="username">&nbsp;
-            <input placeholder="Password" type="password" id="txtPassword" name="password">
+<?php
+    if ((isset($_COOKIE["u"])) && (isset($_COOKIE["p"]) && (isset($_COOKIE["name"])) {
+        $user = $_COOKIE["u"];
+        $pass = $_COOKIE["p"];
+        $name = $_COOKIE["name"];
+        
+        echo '<input type="hidden" id="txtUsername" name="username" value="' . $user . '">&nbsp;';
+        echo '<input type="hidden" id="txtPassword" name="password" value="' . $pass . '">';
+        echo $name . "&nbsp;<button onclick='logout()'>Logout</button>";
+    }
+    else {
+        echo '<input placeholder="Username" type="text" id="txtUsername" name="username">&nbsp;';
+        echo '<input placeholder="Password" type="password" id="txtPassword" name="password">';
+    }
+?>
+            
         </div>
 		<div>
             <button id="btnTrigger"> </button>
