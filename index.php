@@ -46,8 +46,8 @@ include 'utilities.php';
         </div>
         <div id="divErrors"></div>
         <div>
-            <input watermark="Username" type="text" id="txtUsername" name="username"><br>
-            <input watermark="Password" type="password" id="txtPassword" name="password">
+            <input placeholder="Username" type="text" id="txtUsername" name="username">&nbsp;
+            <input placeholder="Password" type="password" id="txtPassword" name="password">
         </div>
 		<div>
             <button id="btnTrigger"> </button>
