@@ -47,7 +47,7 @@
                 $todaysDate = date('m/d/Y');
             
                 if ($startDate > $todaysDate) {     
-                    $error = $startDate . " > " . $todaysDate . "  You are not approved for access until " . $startDate->format('l, M d, Y') . " at " . $startTime->format('g:i a') . ".";
+                    $error = $startDate->format('m/d/Y') . " > " . $todaysDate->format('m/d/Y') . "  You are not approved for access until " . $startDate->format('l, M d, Y') . " at " . $startTime->format('g:i a') . ".";
                 }
                 else {
                     if ($todaysDate > $endDate) {
