@@ -31,6 +31,7 @@ include 'utilities.php';
                         }
                         
                         if ((objResponse.error) && (objResponse.error != "")) {
+                            console.log("Error is not empty");
                             $("#divErrors").show();
                             $("#divErrors").text(objResponse.error);
                         }
