@@ -7,6 +7,9 @@
     $allowed = false;
     $error = "";
     $response = "";
+    $user = "";
+    $pass = "";
+    $name = "";
 
     // Check username, password, and time
     include 'utilities.php';
@@ -39,6 +42,8 @@
             $stmt->bind_result($outId, $outFirstName, $outLastName, $outValidStartTime, $outValidEndTime, $outValidStartDate, $outValidEndDate, $outValidDaysOfWeek, $outPassword);
 
             if ($stmt->fetch()) {
+                $name = $outFirstName . " " . $outLastName;
+                
                 //Check password
                 if (md5($outPassword) != $pass) {
                     $error = "No record found with that username/password.";
@@ -102,7 +107,7 @@
 
                                     setcookie("u", $user, time() + (86400 * 90), "/");
                                     setcookie("p", $pass, time() + (86400 * 90), "/");
-                                    setcookie("name", $outFirstName . " " . $outLastName, time() + (86400 * 90), "/");
+                                    setcookie("name", $name, time() + (86400 * 90), "/");
                                 }
                             }
                         }
@@ -157,11 +162,25 @@
     }
         
         
-    ///TODO: Write out JSON object    
+    // Write out JSON object    
     echo "{ ";
     echo "\"errorMessage\" : \"" . $error . "\", "; 
     echo "\"status\" : \"" . $response . "\"";
     echo " }";
         
     ///TODO: Report action to IFTTT
+    if ($response != "") {
+        $value1 = "allowed";
+    }
+    else {
+        $value1 = "NOT allowed";
+    }
+    $value2 = $name;
+    $value3 = $error;
+            
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, "https://maker.ifttt.com/trigger/garage_activated/with/key/" . Settings::$IftttKey . "?value1=" . $value1 . "&value2=" . $value2 . "&value3=" . $value3);
+    curl_setopt($ch, CURLOPT_HEADER, 0);
+    $strCurlResponse = curl_exec($ch);
+    curl_close($ch);
 ?>

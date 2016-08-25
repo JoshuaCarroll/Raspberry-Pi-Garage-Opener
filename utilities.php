@@ -43,9 +43,10 @@ function getSetting($setting) {
 // Database connection settings
 class Settings {
     public static $garageURL = NULL;
+    public static $IftttKey = NULL;
     
     public function __construct() {
-        if ( (!isset(self::$garageURL)) )  {
+        if ( (!isset(self::$garageURL)) || (!isset(self::$IftttKey)))  {
             self::initializeStStateArr();
         }
     }
@@ -53,6 +54,9 @@ class Settings {
     public static function initializeStStateArr() {
         if (!isset(self::$garageURL)) {
             self::$garageURL = getSetting("GarageURL");
+        }
+        if (!isset(self::$IftttKey)) {
+            self::$IftttKey = getSetting("IftttKey");
         }
     }
 }
