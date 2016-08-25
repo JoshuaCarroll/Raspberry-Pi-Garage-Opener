@@ -113,11 +113,11 @@
 
                 if ($status == "open") {
                   fwrite($fileWriter, "closed");
-                  $response "closed";
+                  $response = "closed";
                 }
                 else {
                   fwrite($fileWriter, "open");
-                  $response "open";
+                  $response = "open";
                 }
 
                 fclose($fileWriter);
