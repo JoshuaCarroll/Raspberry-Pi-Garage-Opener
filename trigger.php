@@ -75,8 +75,11 @@
                                     $binMask = "0" . $binMask;
                                 }
                             }
-                        
-                            if (substr($binMask, date("N")-1, 1) = 0) {
+                            
+                            $dayNumber = date("N") - 1;
+                            $strThisDayPermission = substr($binMask, $dayNumber, 1);
+                            
+                            if ($strThisDayPermission = 0) {
                                 $error = "You are not approved for access on this day of the week.";
                             }
                             else {
