@@ -20,7 +20,7 @@
     else {
         // prepare and bind
         $stmt = $con->prepare('SELECT `id`,`FirstName`,`LastName`,`ValidStartTime`,`ValidEndTime`,`ValidStartDate`,`ValidEndDate`,`ValidDaysOfWeek`,`Password` FROM `Garage`.`Users` WHERE `Username` = ?;');
-        $stmt->bind_param('ss', $user);
+        $stmt->bind_param('s', $user);
         $user = $_GET['u'];
         $stmt->execute();
         $stmt->bind_result($outId, $outFirstName, $outLastName, $outValidStartTime, $outValidEndTime, $outValidStartDate, $outValidEndDate, $outValidDaysOfWeek, $outPassword);
