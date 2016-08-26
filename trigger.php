@@ -118,6 +118,7 @@
                 $error = "No record found with that username.";
             }
         }
+        $con->close();
     }
 
     if ($allowed == true) {

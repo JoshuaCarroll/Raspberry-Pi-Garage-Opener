@@ -38,6 +38,8 @@ function getSetting($setting) {
         }
     }
     return $returnValue;
+    
+    $con->close();
 }
 
 // Database connection settings
