@@ -2,13 +2,9 @@
 body {
     font-family: "Source Sans Pro"; 
     text-align: center; 
-    font-size: 48px;
 }
-body, textarea {background-color: #1e1f22; color: #bfbfbf;}
 
-#divStatus { 
-    margin-top: 4em;
-}
+body, textarea {background-color: #1e1f22; color: #bfbfbf;}
 
 #divErrors {
     background-color: darkmagenta;
@@ -16,6 +12,10 @@ body, textarea {background-color: #1e1f22; color: #bfbfbf;}
     color: white;
     display: none;
     margin-top: 0.5em;
+}
+
+#divStatus { 
+    margin-top: 4em;
 }
 
 #divLogin {
@@ -27,13 +27,13 @@ button:focus {
 }
 
 #spnName {
-    size: 12px;
+    size: 0.25px;
 }
 
 #btnLogout {
     color: #ffffff;
-    height: 100px;
-    width: 150px;
+    height: 2em;
+    width: 3em;
 }
 
 #divTrigger {
@@ -41,8 +41,8 @@ button:focus {
 }
 
 #btnTrigger { 
-    width: 600px;
-    height: 400px;
+    width: 12.5em;
+    height: 8.3em;
     border: 0;
 }
 
@@ -51,4 +51,34 @@ button {
 }
 .buttonActive, button:active {
     background: linear-gradient(to bottom,  rgba(103,103,103,1) 0%,rgba(68,68,68,1) 50%,rgba(82,82,82,1) 100%);
+}
+
+
+/* ------------------------------------------------------------------------------------ Custom, iPhone Retina */ 
+@media only screen and (min-width: 320px) {
+    body {
+        font-size: 48px;
+    }
+}
+
+/* ------------------------------------------------------------------------------------ Extra Small Devices, Phones */ 
+@media only screen and (min-width : 480px) {
+
+}
+
+/* ------------------------------------------------------------------------------------ Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+    
+}
+
+/* ------------------------------------------------------------------------------------ Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+    body {
+        font-size: 18px;
+    }
+}
+
+/* ------------------------------------------------------------------------------------ Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+	
 }
