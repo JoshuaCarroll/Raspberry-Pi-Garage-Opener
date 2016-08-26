@@ -14,11 +14,11 @@
     // Check username, password, and time
     include 'utilities.php';
 
-    if ((isset($_COOKIE["u"])) && (isset($_COOKIE["p"])) {
+    if ((isset($_COOKIE["u"])) && (isset($_COOKIE["p"]))) {
         $user = $_COOKIE["u"];
         $pass = $_COOKIE["p"];
     }
-    elseif ((isset($_GET["u"])) && (isset($_GET["p"])) {
+    elseif ((isset($_GET["u"])) && (isset($_GET["p"]))) {
         $user = $_GET["u"];
         $pass = $_GET["p"];
     }
