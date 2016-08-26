@@ -65,7 +65,7 @@ include 'utilities.php';
         <div id="divErrors"></div>
         <div id="divLogin">
 <?php
-    if ((isset($_COOKIE["u"])) && (isset($_COOKIE["p"]) && (isset($_COOKIE["name"])) {
+    if ((isset($_COOKIE["u"])) && (isset($_COOKIE["p"])) && (isset($_COOKIE["name"]))) {
         $user = $_COOKIE["u"];
         $pass = $_COOKIE["p"];
         $name = $_COOKIE["name"];
