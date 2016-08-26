@@ -26,7 +26,21 @@ button:focus {
     outline: none;
 }
 
-button { 
+#spnName {
+    size: 12px;
+}
+
+#btnLogout {
+    color: #ffffff;
+    height: 100px;
+    width: 150px;
+}
+
+#divTrigger {
+    margin-bottom: 2em;
+}
+
+#btnTrigger { 
     width: 600px;
     height: 400px;
     border: 0;

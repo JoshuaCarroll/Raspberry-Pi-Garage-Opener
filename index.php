@@ -65,6 +65,8 @@ include 'utilities.php';
         <div id="divErrors"></div>
         <div id="divLogin">
 <?php
+    $boolLoggedIn = false;
+            
     if ((isset($_COOKIE["u"])) && (isset($_COOKIE["p"])) && (isset($_COOKIE["name"]))) {
         $user = $_COOKIE["u"];
         $pass = $_COOKIE["p"];
@@ -72,7 +74,7 @@ include 'utilities.php';
         
         echo '<input type="hidden" id="txtUsername" name="username" value="' . $user . '">&nbsp;';
         echo '<input type="hidden" id="txtPassword" name="password" value="' . $pass . '">';
-        echo $name . "&nbsp;<button onclick='logout()'>Logout</button>";
+        $boolLoggedIn = true;
     }
     else {
         echo '<input placeholder="Username" type="text" id="txtUsername" name="username">&nbsp;';
@@ -81,8 +83,13 @@ include 'utilities.php';
 ?>
             
         </div>
-		<div>
+		<div id="divTrigger">
             <button id="btnTrigger"> </button>
 		</div>
+<?php
+        if ($boolLoggedIn) {
+            echo '<span id="spnName">' . $name . "&nbsp;</span><button id='btnLogout' onclick='logout()'>Logout</button>";
+        }
+?>
 	</body>
 </html>
