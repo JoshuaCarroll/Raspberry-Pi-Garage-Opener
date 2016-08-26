@@ -46,9 +46,10 @@ function getSetting($setting) {
 class Settings {
     public static $garageURL = NULL;
     public static $IftttKey = NULL;
+    public static $KnownIntermediaries = NULL;
     
     public function __construct() {
-        if ( (!isset(self::$garageURL)) || (!isset(self::$IftttKey)))  {
+        if ( (!isset(self::$garageURL)) || (!isset(self::$IftttKey)) || (!isset(self::$KnownIntermediaries)))  {
             self::initializeStStateArr();
         }
     }
@@ -59,6 +60,9 @@ class Settings {
         }
         if (!isset(self::$IftttKey)) {
             self::$IftttKey = getSetting("IftttKey");
+        }
+        if (!isset(self::$KnownIntermediaries)) {
+            self::$KnownIntermediaries = getSetting("KnownIntermediaries");
         }
     }
 }

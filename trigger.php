@@ -14,7 +14,10 @@
     // Check username, password, and time
     include 'utilities.php';
 
-    if ((isset($_COOKIE["u"])) && (isset($_COOKIE["p"]))) {
+    if (!strpos(Settings::$KnownIntermediaries, ";" . $_SERVER['REMOTE_ADDR'] . ";")) {
+        $error = $_SERVER['REMOTE_ADDR'] . " is unknown.";
+    }
+    elseif ((isset($_COOKIE["u"])) && (isset($_COOKIE["p"]))) {
         $user = $_COOKIE["u"];
         $pass = $_COOKIE["p"];
     }
