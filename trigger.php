@@ -169,7 +169,7 @@
     echo "\"status\" : \"" . $response . "\"";
     echo " }";
         
-    ///TODO: Report action to IFTTT
+    // Report action to IFTTT
     if ($response != "") {
         $value1 = "allowed";
     }
@@ -179,9 +179,9 @@
     $value2 = $name;
     $value3 = $error;
             
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, "https://maker.ifttt.com/trigger/garage_activated/with/key/" . Settings::$IftttKey . "?value1=" . $value1 . "&value2=" . $value2 . "&value3=" . $value3);
-    curl_setopt($ch, CURLOPT_HEADER, 0);
-    $strCurlResponse = curl_exec($ch);
-    curl_close($ch);
+    $strApiUrl = "https://maker.ifttt.com/trigger/garage_activated/with/key/" . Settings::$IftttKey . "?value1=" . $value1 . "&value2=" . $value2 . "&value3=" . $value3;
+    file_get_contents($strApiUrl);
+
+    ///TODO: Write to a log
+
 ?>
