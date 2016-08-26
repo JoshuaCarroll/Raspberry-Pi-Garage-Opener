@@ -179,7 +179,7 @@
     $value2 = $name;
     $value3 = $error;
             
-    $strApiUrl = "https://maker.ifttt.com/trigger/garage_activated/with/key/" . Settings::$IftttKey . "?value1=" . $value1 . "&value2=" . $value2 . "&value3=" . $value3;
+    $strApiUrl = "https://maker.ifttt.com/trigger/garage_activated/with/key/" . Settings::$IftttKey . "?value1=" . urlencode($value1) . "&value2=" . urlencode($value2) . "&value3=" . urlencode($value3);
     file_get_contents($strApiUrl);
 
     ///TODO: Write to a log
