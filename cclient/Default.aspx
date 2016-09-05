@@ -14,7 +14,7 @@
 		<script type="text/javascript">
 		    $(document).ready(function () {
 		        $('#btnTrigger').click(function (e) {
-		            var strUrl = "triggerpuller.ashx?u=" + $("#txtUsername").val() + "&p=" + CryptoJS.MD5($("#txtPassword").val()).toString();
+		            var strUrl = "triggerpuller.ashx?u=" + $("#txtUsername").value + "&p=" + CryptoJS.MD5($("#txtPassword").value).toString();
 		            $.getJSON(strUrl, processResponse);
                     return false;
 		        });
@@ -42,8 +42,8 @@
                 }
 
                 if ((data.allowed) && (data.allowed == "true")) {
-                    setCookie("u", $("#txtUsername").val(), 365);
-                    setCookie("p", CryptoJS.MD5($("#txtPassword").val()).toString(), 365);
+                    setCookie("u", $("#txtUsername").value, 365);
+                    setCookie("p", CryptoJS.MD5($("#txtPassword").value).toString(), 365);
                     setCookie("name", data.user, 365);
                 }
 

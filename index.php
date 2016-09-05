@@ -18,45 +18,50 @@ include 'utilities.php';
 		<script type="text/javascript" src="jquery-1.10.2.min.js"></script>
         <script type="text/javascript" src="md5.js"></script>
 		<script type="text/javascript">            
-            $(document).ready(function() {
-                $('#btnTrigger').click(function(e) {
-                    var strUrl = "triggerpuller.php?u=" + $("#txtUsername").val() + "&p=" + CryptoJS.MD5($("#txtPassword").val());
-                    $.getJSON(strUrl, function(data) {
-                        console.log(data);
-                        
-                        if ((data.status) && (data.status != "")) {
-                            $("#spnStatus").text(data.status);
-                        }
-                        
-                        if ((data.errorMessage) && (data.errorMessage != "")) {
-                            console.log("Error is not empty");
-                            $("#divErrors").show();
-                            $("#divErrors").text(data.errorMessage);
-                        }
-                        else {
-                            $("#divErrors").text("");
-                            $("#divErrors").hide();
-                        }
-                        
-                        if ((data.allowed) && (data.allowed == "true")) {
-                            setCookie("u", $("#txtUsername").val(), 365);
-                            setCookie("p", CryptoJS.MD5($("#txtPassword").val(), 365);
-                            setCookie("name", data.user, 365);
-                        }
-                    });
-                });
+		    $(document).ready(function () {
+		        $('#btnTrigger').click(function (e) {
+		            var strUrl = "triggerpuller.ashx?u=" + $("#txtUsername").value + "&p=" + CryptoJS.MD5($("#txtPassword").value).toString();
+		            $.getJSON(strUrl, processResponse);
+                    return false;
+		        });
+
+		        $.getJSON("statusgetter.ashx", function (data) {
+		            $('#spnStatus').text(data.status);
+		        });
+		    });
+
+            function processResponse(data) {
+                console.log(data);
                 
-                $.getJSON("statusgetter.php", function(data) {
-                    $('#spnStatus').text(data.status);
-                });
-            });
+                if ((data.status) && (data.status != "")) {
+                    $("#spnStatus").text(data.status);
+                }
+
+                if ((data.errorMessage) && (data.errorMessage != "")) {
+                    console.log("Error is not empty");
+                    $("#divErrors").show();
+                    $("#divErrors").text(data.errorMessage);
+                }
+                else {
+                    $("#divErrors").text("");
+                    $("#divErrors").hide();
+                }
+
+                if ((data.allowed) && (data.allowed == "true")) {
+                    setCookie("u", $("#txtUsername").value, 365);
+                    setCookie("p", CryptoJS.MD5($("#txtPassword").value).toString(), 365);
+                    setCookie("name", data.user, 365);
+                }
+
+                console.log("Response is done being processed");
+            }    
             
-            function logout() {
-                document.cookie = "u=;expires=Wed 01 Jan 1970";
-                document.cookie = "p=;expires=Wed 01 Jan 1970";
-                document.cookie = "user=;expires=Wed 01 Jan 1970";
-                location.reload();
-            }
+		    function logout() {
+		        document.cookie = "u=;expires=Wed 01 Jan 1970";
+		        document.cookie = "p=;expires=Wed 01 Jan 1970";
+		        document.cookie = "user=;expires=Wed 01 Jan 1970";
+		        location.reload();
+		    }
             
             function setCookie(cname, cvalue, exdays) {
                 var d = new Date();
