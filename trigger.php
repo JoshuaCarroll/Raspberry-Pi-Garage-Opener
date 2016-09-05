@@ -156,14 +156,18 @@
     elseif ($error == "") {
         $error = "An unspecified error occurred.";
     }
-        
+    
+    $strAllowed = "false";
+    if ($allowed == true) {
+        $strAllowed = "true";
+    }
         
     // Write out JSON object    
     echo "{ ";
     echo "\"errorMessage\" : \"" . $error . "\", "; 
     echo "\"status\" : \"" . $response . "\", ";
     echo "\"user\" : \"" . $name . "\", ";
-    echo "\"allowed\" : \"" . $allowed . "\" ";
+    echo "\"allowed\" : \"" . $strAllowed . "\" ";
     echo " }";
         
     // Report action to IFTTT
