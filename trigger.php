@@ -86,8 +86,8 @@
                                 $dayMask = $outValidDaysOfWeek;
 
                                 for ($x=6; $x >= 0; $x--) {
-                                    if ($dayMask >= 2^x) {
-                                        $dayMask = $dayMask - (2^x);
+                                    if ($dayMask >= 2^$x) {
+                                        $dayMask = $dayMask - (2^$x);
                                         $binMask = "1" . $binMask;
                                     }
                                     else {

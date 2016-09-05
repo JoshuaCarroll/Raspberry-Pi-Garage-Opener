@@ -15,29 +15,8 @@
 		    $(document).ready(function () {
 		        $('#btnTrigger').click(function (e) {
 		            var strUrl = "triggerpuller.ashx?u=" + $("#txtUsername").val() + "&p=" + CryptoJS.MD5($("#txtPassword").val());
-		            $.getJSON(strUrl, function (data) {
-		                console.log(data);
-
-		                if ((data.status) && (data.status != "")) {
-		                    $("#spnStatus").text(data.status);
-		                }
-
-		                if ((data.errorMessage) && (data.errorMessage != "")) {
-		                    console.log("Error is not empty");
-		                    $("#divErrors").show();
-		                    $("#divErrors").text(data.errorMessage);
-		                }
-		                else {
-		                    $("#divErrors").text("");
-		                    $("#divErrors").hide();
-		                }
-                        
-                        if ((data.allowed) && (data.allowed == "true")) {
-                            setCookie("u", $("#txtUsername").val(), 365);
-                            setCookie("p", CryptoJS.MD5($("#txtPassword").val(), 365);
-                            setCookie("name", data.user, 365);
-                        }
-		            });
+		            $.getJSON(strUrl, processResponse);
+                    return false;
 		        });
 
 		        $.getJSON("statusgetter.ashx", function (data) {
@@ -45,6 +24,32 @@
 		        });
 		    });
 
+            function processResponse(data) {
+                console.log(data);
+                
+                if ((data.status) && (data.status != "")) {
+                    $("#spnStatus").text(data.status);
+                }
+
+                if ((data.errorMessage) && (data.errorMessage != "")) {
+                    console.log("Error is not empty");
+                    $("#divErrors").show();
+                    $("#divErrors").text(data.errorMessage);
+                }
+                else {
+                    $("#divErrors").text("");
+                    $("#divErrors").hide();
+                }
+
+                if ((data.allowed) && (data.allowed == "true")) {
+                    setCookie("u", $("#txtUsername").val(), 365);
+                    setCookie("p", CryptoJS.MD5($("#txtPassword").val()), 365);
+                    setCookie("name", data.user, 365);
+                }
+
+                console.log("Response is done being processed");
+            }    
+            
 		    function logout() {
 		        document.cookie = "u=;expires=Wed 01 Jan 1970";
 		        document.cookie = "p=;expires=Wed 01 Jan 1970";
