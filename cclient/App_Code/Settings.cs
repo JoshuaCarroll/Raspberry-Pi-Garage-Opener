@@ -1,0 +1,1 @@
+﻿using System;using System.Collections.Generic;using System.Linq;using System.Web;public static class Settings{    public static string garageURL = "";    public static string IftttKey = "";    public static string KnownIntermediaries = "";	public Settings()	{		//		// TODO: Add constructor logic here		//	}}
