@@ -86,8 +86,8 @@
                                 $dayMask = $outValidDaysOfWeek;
 
                                 for ($x=6; $x >= 0; $x--) {
-                                    if ($dayMask >= 2^x) {
-                                        $dayMask = $dayMask - (2^x);
+                                    if ($dayMask >= 2^$x) {
+                                        $dayMask = $dayMask - (2^$x);
                                         $binMask = "1" . $binMask;
                                     }
                                     else {
@@ -103,10 +103,6 @@
                                 }
                                 else {
                                     $allowed = true;
-
-                                    setcookie("u", $user, time() + (86400 * 90), "/");
-                                    setcookie("p", $pass, time() + (86400 * 90), "/");
-                                    setcookie("name", $name, time() + (86400 * 90), "/");
                                 }
                             }
                         }
@@ -160,12 +156,18 @@
     elseif ($error == "") {
         $error = "An unspecified error occurred.";
     }
-        
+    
+    $strAllowed = "false";
+    if ($allowed == true) {
+        $strAllowed = "true";
+    }
         
     // Write out JSON object    
     echo "{ ";
     echo "\"errorMessage\" : \"" . $error . "\", "; 
-    echo "\"status\" : \"" . $response . "\"";
+    echo "\"status\" : \"" . $response . "\", ";
+    echo "\"user\" : \"" . $name . "\", ";
+    echo "\"allowed\" : \"" . $strAllowed . "\" ";
     echo " }";
         
     // Report action to IFTTT

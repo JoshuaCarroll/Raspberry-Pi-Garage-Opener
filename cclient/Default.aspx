@@ -1,23 +1,17 @@
-<?php
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="cclient_Default" %>
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-include 'utilities.php';
-
-?><!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 	<head>
 		<title>Garage Opener</title>
-		<link rel="apple-touch-icon" href="apple-touch-icon-iphone.png" />
-		<link rel="apple-touch-icon" sizes="72x72" href="apple-touch-icon-ipad.png" />
-		<link rel="apple-touch-icon" sizes="114x114" href="apple-touch-icon-iphone-retina-display.png" />		
-		<link rel="stylesheet" href="style.css" type="text/css">
+		<link rel="apple-touch-icon" href="../apple-touch-icon-iphone.png" />
+		<link rel="apple-touch-icon" sizes="72x72" href="../apple-touch-icon-ipad.png" />
+		<link rel="apple-touch-icon" sizes="114x114" href="../apple-touch-icon-iphone-retina-display.png" />		
+		<link rel="stylesheet" href="../style.css" type="text/css">
 		<meta name="apple-mobile-web-app-capable" content="yes">	
-		<script type="text/javascript" src="jquery-1.10.2.min.js"></script>
-        <script type="text/javascript" src="md5.js"></script>
-		<script type="text/javascript">            
+		<script type="text/javascript" src="../jquery-1.10.2.min.js"></script>
+        <script type="text/javascript" src="../md5.js"></script>
+		<script type="text/javascript">
 		    $(document).ready(function () {
 		        $('#btnTrigger').click(function (e) {
 		            var strUrl = "triggerpuller.ashx?u=" + $("#txtUsername").value + "&p=" + CryptoJS.MD5($("#txtPassword").value).toString();
@@ -73,36 +67,17 @@ include 'utilities.php';
         
 	</head>
 	<body>
+        <form id="form1" runat="server">
         <div id="divStatus">Garage is <span id="spnStatus"></span>.
         </div>
         <div id="divErrors"></div>
         <div id="divLogin">
-<?php
-    $boolLoggedIn = false;
-            
-    if ((isset($_COOKIE["u"])) && (isset($_COOKIE["p"])) && (isset($_COOKIE["name"]))) {
-        $user = $_COOKIE["u"];
-        $pass = $_COOKIE["p"];
-        $name = $_COOKIE["name"];
-        
-        echo '<input type="hidden" id="txtUsername" name="username" value="' . $user . '">&nbsp;';
-        echo '<input type="hidden" id="txtPassword" name="password" value="' . $pass . '">';
-        $boolLoggedIn = true;
-    }
-    else {
-        echo '<input placeholder="Username" type="text" id="txtUsername" name="username">&nbsp;';
-        echo '<input placeholder="Password" type="password" id="txtPassword" name="password">';
-    }
-?>
-            
+            <asp:Label ID="lblLogin" runat="server" Text=""></asp:Label>
         </div>
 		<div id="divTrigger">
             <button id="btnTrigger"> </button>
 		</div>
-<?php
-        if ($boolLoggedIn) {
-            echo '<span id="spnName">' . $name . "&nbsp;</span><button id='btnLogout' onclick='logout()'>Logout</button>";
-        }
-?>
+        <asp:Label ID="lblName" runat="server" Text=""></asp:Label>
+    </form>
 	</body>
 </html>
