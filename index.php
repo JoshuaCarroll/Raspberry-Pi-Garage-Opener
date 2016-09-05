@@ -37,6 +37,12 @@ include 'utilities.php';
                             $("#divErrors").text("");
                             $("#divErrors").hide();
                         }
+                        
+                        if ((data.allowed) && (data.allowed == "true")) {
+                            setCookie("u", $("#txtUsername").val(), 365);
+                            setCookie("p", CryptoJS.MD5($("#txtPassword").val(), 365);
+                            setCookie("name", data.user, 365);
+                        }
                     });
                 });
                 
@@ -50,6 +56,13 @@ include 'utilities.php';
                 document.cookie = "p=;expires=Wed 01 Jan 1970";
                 document.cookie = "user=;expires=Wed 01 Jan 1970";
                 location.reload();
+            }
+            
+            function setCookie(cname, cvalue, exdays) {
+                var d = new Date();
+                d.setTime(d.getTime() + (exdays*24*60*60*1000));
+                var expires = "expires="+ d.toUTCString();
+                document.cookie = cname + "=" + cvalue + "; " + expires;
             }
         </script>    
         

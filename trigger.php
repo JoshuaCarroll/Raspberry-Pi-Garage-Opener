@@ -103,10 +103,6 @@
                                 }
                                 else {
                                     $allowed = true;
-
-                                    setcookie("u", $user, time() + (86400 * 90), "/");
-                                    setcookie("p", $pass, time() + (86400 * 90), "/");
-                                    setcookie("name", $name, time() + (86400 * 90), "/");
                                 }
                             }
                         }
@@ -165,7 +161,9 @@
     // Write out JSON object    
     echo "{ ";
     echo "\"errorMessage\" : \"" . $error . "\", "; 
-    echo "\"status\" : \"" . $response . "\"";
+    echo "\"status\" : \"" . $response . "\", ";
+    echo "\"user\" : \"" . $name . "\", ";
+    echo "\"allowed\" : \"" . $allowed . "\" ";
     echo " }";
         
     // Report action to IFTTT
