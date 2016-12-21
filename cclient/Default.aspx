@@ -10,11 +10,10 @@
 		<link rel="stylesheet" href="../style.css" type="text/css">
 		<meta name="apple-mobile-web-app-capable" content="yes">	
 		<script type="text/javascript" src="../jquery-1.10.2.min.js"></script>
-        <script type="text/javascript" src="../md5.js"></script>
 		<script type="text/javascript">
 		    $(document).ready(function () {
 		        $('#btnTrigger').click(function (e) {
-		            var strUrl = "triggerpuller.ashx?u=" + $("#txtUsername").value + "&p=" + CryptoJS.MD5($("#txtPassword").value).toString();
+		            var strUrl = "triggerpuller.ashx";
 		            $.getJSON(strUrl, processResponse);
                     return false;
 		        });
@@ -41,28 +40,8 @@
                     $("#divErrors").hide();
                 }
 
-                if ((data.allowed) && (data.allowed == "true")) {
-                    setCookie("u", $("#txtUsername").value, 365);
-                    setCookie("p", CryptoJS.MD5($("#txtPassword").value).toString(), 365);
-                    setCookie("name", data.user, 365);
-                }
-
                 console.log("Response is done being processed");
             }    
-            
-		    function logout() {
-		        document.cookie = "u=;expires=Wed 01 Jan 1970";
-		        document.cookie = "p=;expires=Wed 01 Jan 1970";
-		        document.cookie = "user=;expires=Wed 01 Jan 1970";
-		        location.reload();
-		    }
-            
-            function setCookie(cname, cvalue, exdays) {
-                var d = new Date();
-                d.setTime(d.getTime() + (exdays*24*60*60*1000));
-                var expires = "expires="+ d.toUTCString();
-                document.cookie = cname + "=" + cvalue + "; " + expires;
-            }
         </script>    
         
 	</head>
@@ -71,13 +50,9 @@
         <div id="divStatus">Garage is <span id="spnStatus"></span>.
         </div>
         <div id="divErrors"></div>
-        <div id="divLogin">
-            <asp:Label ID="lblLogin" runat="server" Text=""></asp:Label>
-        </div>
 		<div id="divTrigger">
             <button id="btnTrigger"> </button>
 		</div>
-        <asp:Label ID="lblName" runat="server" Text=""></asp:Label>
     </form>
 	</body>
 </html>
