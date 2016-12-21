@@ -35,9 +35,15 @@
             $error = "Unable to open status file for writing. Door status incorrect. Continuing...";
         }
 
+        $delay = 1000000;
+        
+        if ($_GET['force'] == "true") {
+            $delay = 15000000;
+        }
+        
         error_reporting(E_ALL);
         exec('gpio -g write 18 off');
-        usleep(1000000);
+        usleep($delay);    
         exec('gpio -g write 18 on');
     }
         

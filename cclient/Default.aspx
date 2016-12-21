@@ -7,42 +7,10 @@
 		<link rel="apple-touch-icon" href="../apple-touch-icon-iphone.png" />
 		<link rel="apple-touch-icon" sizes="72x72" href="../apple-touch-icon-ipad.png" />
 		<link rel="apple-touch-icon" sizes="114x114" href="../apple-touch-icon-iphone-retina-display.png" />		
-		<link rel="stylesheet" href="../style.css" type="text/css">
+		<link rel="stylesheet" href="style.css" type="text/css">
 		<meta name="apple-mobile-web-app-capable" content="yes">	
 		<script type="text/javascript" src="../jquery-1.10.2.min.js"></script>
-		<script type="text/javascript">
-		    $(document).ready(function () {
-		        $('#btnTrigger').click(function (e) {
-		            var strUrl = "triggerpuller.ashx";
-		            $.getJSON(strUrl, processResponse);
-                    return false;
-		        });
-
-		        $.getJSON("statusgetter.ashx", function (data) {
-		            $('#spnStatus').text(data.status);
-		        });
-		    });
-
-            function processResponse(data) {
-                console.log(data);
-                
-                if ((data.status) && (data.status != "")) {
-                    $("#spnStatus").text(data.status);
-                }
-
-                if ((data.errorMessage) && (data.errorMessage != "")) {
-                    console.log("Error is not empty");
-                    $("#divErrors").show();
-                    $("#divErrors").text(data.errorMessage);
-                }
-                else {
-                    $("#divErrors").text("");
-                    $("#divErrors").hide();
-                }
-
-                console.log("Response is done being processed");
-            }    
-        </script>    
+		<script type="text/javascript" src="script.js"></script>    
         
 	</head>
 	<body>
