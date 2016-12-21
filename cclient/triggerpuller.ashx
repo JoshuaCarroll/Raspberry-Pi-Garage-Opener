@@ -6,7 +6,7 @@ using System.Net;
 
 public class triggerpuller : IHttpHandler {
 
-    private string garageURL = "http://website/";
+    private string garageURL = "/";
     
     public void ProcessRequest (HttpContext context) {
         context.Response.ContentType = "text/plain";
@@ -14,6 +14,11 @@ public class triggerpuller : IHttpHandler {
         string strResponse = "";
 
         string strUrl = garageURL + "server.php";
+
+        if (context.Request.QueryString["force"] == "true")
+        {
+            strUrl += "?force=true";
+        }
 
         using(WebClient client = new WebClient()) {
            strResponse = client.DownloadString(strUrl);
