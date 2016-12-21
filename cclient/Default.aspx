@@ -21,6 +21,9 @@
 		<div id="divTrigger">
             <button id="btnTrigger"> </button>
 		</div>
+        <div id="divForce">
+            <button id="btnForce">Force</button>
+		</div>
     </form>
 	</body>
 </html>

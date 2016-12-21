@@ -5,6 +5,14 @@
         return false;
     });
 
+    $('#btnForce').click(function (e) {
+        if (confirm("This is unsafe. Are you sure?")) {
+            var strUrl = "triggerpuller.ashx?force=true";
+            $.getJSON(strUrl, processResponse);
+            return false;
+        }
+    });
+
     $.getJSON("statusgetter.ashx", function (data) {
         $('#spnStatus').text(data.status);
     });
