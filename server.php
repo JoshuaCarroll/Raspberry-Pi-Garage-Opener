@@ -5,57 +5,42 @@
     error_reporting(E_ALL);
 
     include 'utilities.php';
-    include "filename.php";
 
-    try {
-        $fileReader = fopen($filename, "r+");
-        $status = trim(fread($fileReader,filesize($filename)));
-        fclose($fileReader);
-    }
-    catch (Exception $e) {
-        $error = "Unable to open status file for reading. Door status incorrect. Moving on...";
-    }
+	
+	$status = "unknown";
 
-    if ($error == "") {
-        try {
-            $fileWriter = fopen($filename, "w");
+	$gpioValue = exec('gpio -g read 22');
 
-            if ($status == "open") {
-              fwrite($fileWriter, "closed");
-              $response = "closed";
-            }
-            else {
-              fwrite($fileWriter, "open");
-              $response = "open";
-            }
+	if ($gpioValue == "1") {
+		$status = "open";
+		$iftttStatus = "close";
+	}
+	elseif ($gpioValue == "0") {
+		$status = "closed";
+		$iftttStatus = "open";
+	}
 
-            fclose($fileWriter);
-        }
-        catch (Exception $e) {
-            $error = "Unable to open status file for writing. Door status incorrect. Continuing...";
-        }
+	$delay = 1000000;
 
-        $delay = 1000000;
-        
-        if ($_GET['force'] == "true") {
-            $delay = 15000000;
-        }
-        
-        error_reporting(E_ALL);
-        exec('gpio -g write 18 off');
-        usleep($delay);    
-        exec('gpio -g write 18 on');
-    }
+	if ($_GET['force'] == "true") {
+		$delay = 15000000;
+	}
+
+	error_reporting(E_ALL);
+	exec('gpio -g write 18 off');
+	usleep($delay);    
+	exec('gpio -g write 18 on');
+    
         
     // Write out JSON object    
     echo "{ ";
     echo "\"errorMessage\" : \"" . $error . "\", "; 
-    echo "\"status\" : \"" . $response . "\", ";
+    echo "\"status\" : \"" . $status . "\", ";
     echo " }";
         
     // Report action to IFTTT
     $value1 = "allowed";
-    $value2 = "someone";
+    $value2 = "someone to" + $iffftStatus;
     $value3 = $error;
     
     if (Settings::$IftttKey != "") {
