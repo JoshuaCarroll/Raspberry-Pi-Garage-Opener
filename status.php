@@ -9,10 +9,10 @@ $status = "unknown";
 
 $gpioValue = exec('gpio -g read 22');
 
-if ($gpioValue == "1") {
+if ($gpioValue == "0") {
 	$status = "open";
 }
-elseif ($gpioValue == "0") {
+elseif ($gpioValue == "1") {
 	$status = "closed";
 }
 
