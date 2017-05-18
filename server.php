@@ -54,7 +54,7 @@
     echo " }";
         
     // Report action to IFTTT
-    $value1 = "activated";
+    $value1 = "allowed";
     $value2 = "someone";
     $value3 = $error;
     
