@@ -6,7 +6,7 @@ using System.Net;
 
 public class triggerpuller : IHttpHandler {
 
-    private string garageURL = "/";
+    private string garageURL = "http://n5jlc.duckdns.org:81/dev/";
     
     public void ProcessRequest (HttpContext context) {
         context.Response.ContentType = "text/plain";
