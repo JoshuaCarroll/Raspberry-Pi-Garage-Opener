@@ -14,11 +14,11 @@
 
 	if ($gpioValue == "1") {
 		$status = "open";
-		$iftttStatus = "close";
+		$iftttStatus = "closed";
 	}
 	elseif ($gpioValue == "0") {
 		$status = "closed";
-		$iftttStatus = "open";
+		$iftttStatus = "opened";
 	}
 
 	$delay = 1000000;
@@ -40,12 +40,10 @@
     echo " }";
         
     // Report action to IFTTT
-    $value1 = "allowed";
-    $value2 = "someone to" + $iffftStatus;
-    $value3 = $error;
+	$iftttPhrase = "Someone " . $iftttStatus . " the garage door.";
     
     if (Settings::$IftttKey != "") {
-        $strApiUrl = "https://maker.ifttt.com/trigger/garage_activated/with/key/" . Settings::$IftttKey . "?value1=" . urlencode($value1) . "&value2=" . urlencode($value2) . "&value3=" . urlencode($value3);
+        $strApiUrl = "https://maker.ifttt.com/trigger/garage_activated/with/key/" . Settings::$IftttKey . "?value1=" . urlencode($iftttPhrase);
         file_get_contents($strApiUrl);
     }
 
