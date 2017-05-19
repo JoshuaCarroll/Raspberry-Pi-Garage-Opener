@@ -22,13 +22,13 @@
 case "$1" in
 start)
 echo "Starting Relay"
-# Turn 18 on which keeps relay off
+# Turn 18 on which keeps relay off, then init relay
 /usr/local/bin/gpio -g write 18 1
-#Start Gpio
 /usr/local/bin/gpio -g mode 18 out
-#Initializa door monitor
-gpio -g mode 22 in
-gpio -g mode 22 up
+
+#Initialize door monitor
+/usr/local/bin/gpio -g mode 22 in
+/usr/local/bin/gpio -g mode 22 up
 
 ;;
 stop)
