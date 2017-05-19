@@ -11,7 +11,7 @@
 # Description:       Enable service provided by garage door daemon.
 ### END INIT INFO
 
-# To install, do this :
+# To install, do this:
 # sudo cp garagerelay.sh /etc/init.d/garagerelay
 # sudo chmod 777 /etc/init.d/garagerelay
 # sudo update-rc.d -f garagerelay start 4
