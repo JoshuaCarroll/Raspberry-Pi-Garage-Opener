@@ -1,4 +1,4 @@
-﻿<%@ WebHandler Language="C#" Class="triggerpuller" %>
+<%@ WebHandler Language="C#" Class="triggerpuller" %>
 
 using System;
 using System.Web;
@@ -6,7 +6,7 @@ using System.Net;
 
 public class triggerpuller : IHttpHandler {
 
-    private string garageURL = "/";
+    private string garageURL = ConfigurationManager.AppSettings["garageURL"].ToString();
     
     public void ProcessRequest (HttpContext context) {
         context.Response.ContentType = "text/plain";

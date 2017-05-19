@@ -1,12 +1,12 @@
-﻿<%@ WebHandler Language="C#" Class="statusgetter" %>
+<%@ WebHandler Language="C#" Class="statusgetter" %>
 
 using System;
 using System.Web;
 using System.Net;
 
 public class statusgetter : IHttpHandler {
-
-    private string garageURL = "http://website/";
+	
+	private string garageURL = ConfigurationManager.AppSettings["garageURL"].ToString();
     
     public void ProcessRequest (HttpContext context) {
         context.Response.ContentType = "text/plain";
