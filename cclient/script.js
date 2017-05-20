@@ -1,16 +1,16 @@
 $(document).ready(function () {
     $('#btnTrigger').click(function (e) {
+        button_clicked();
         var strUrl = "triggerpuller.ashx";
         $.getJSON(strUrl, processResponse);
-		button_clicked();
         return false;
     });
 
     $('#btnForce').click(function (e) {
         if (confirm("This is unsafe. Are you sure?")) {
+            button_clicked();
             var strUrl = "triggerpuller.ashx?force=true";
             $.getJSON(strUrl, processResponse);
-			button_clicked();
             return false;
         }
     });
