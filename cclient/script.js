@@ -20,19 +20,29 @@ $(document).ready(function () {
     });
 });
 
+var statusTimer = null;
+
 function button_clicked() {
 	if ($("#spnStatus").text() == "open") {
 		$("#spnStatus").text("closing");
 	}
-	else if (status == "closed") {
+	else if ($("#spnStatus").text() == "closed") {
 		$("#spnStatus").text("opening");
 	}
 	
-	setTimeout(function() {
+	statusTimer = setTimeout(function() {
 		$.getJSON("statusgetter.ashx", function (data) {
 			$('#spnStatus').text(data.status);
+			statusTimer = null;
 		});
 	}, 15000);
+	blink();
+}
+
+function blink() {
+	if (statusTimer) {
+		$('#divStatus').fadeOut(500).fadeIn(500, blink);
+	}
 }
 
 function processResponse(data) {
