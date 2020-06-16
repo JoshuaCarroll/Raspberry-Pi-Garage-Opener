@@ -1,1 +1,0 @@
-﻿using System;using System.Collections.Generic;using System.Linq;using System.Web;public static class Settings{    public static string garageURL = "http://n5jlc.duckdns.org:81/dev/";    public static string IftttKey = "";    public static string KnownIntermediaries = "";}
