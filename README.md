@@ -6,13 +6,17 @@ Once you assemble the hardware as described in his article, simply follow these 
 
 # Installation
 
-1. Install mySQL server. This command will also install any missing prerequisites. Enter a root password when prompted. (Be sure to remember said root password. It's kind of important.)
+1. Update the package repositories
+
+    `sudo apt-get update
+
+2. Install mySQL server. This command will also install any missing prerequisites. Enter a root password when prompted. (Be sure to remember said root password. It's kind of important.)
 
     `sudo apt-get install mysql-server --fix-missing`
     
-2. Install Apache2, PHP5, and the PHP module for Apache with the following command:
+3. Install Apache2, PHP5, and the PHP module for Apache with the following command:
 
-    `sudo apt-get install apache2 php5 libapache2-mod-php5 mysql-client php5-mysql -y`
+    `sudo apt install apache2 php libapache2-mod-php wiringpi git screen -y`
     
 3. Execute the SQL setup script:
 
