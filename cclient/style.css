@@ -15,25 +15,23 @@ button:focus {
     outline: none;
 }
 
-.btnTrigger { 
-	width: 300px;
-	height: 200px;
-	border: 0;
-	font-size: 1em;
-	color: #fff;
+#btnTrigger { 
+    width: 600px;
+    height: 400px;
+    border: 0;
 }
 #divForce 
 {
     margin-top: 1500px;
-    margin-bottom: 200px;
+	margin-bottom: 200px;
 }
 #btnForce 
 {
     width: 300px;
     height: 200px;
     border: 0;
-    font-size: 1em;
-    color: #fff;
+	font-size: 1em;
+	color: #fff;
 }
 
 button {

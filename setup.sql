@@ -25,4 +25,4 @@ CREATE TABLE IF NOT EXISTS `Settings` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Add the known settings. This won't add them if they are there because of the Unique key constraint on the name column.
-INSERT IGNORE INTO RPiWx_SETTINGS (`Key`, `Value`) VALUE ('GarageURL', '');
+INSERT IGNORE INTO Settings (`Key`, `Value`) VALUE ('GarageURL', '');

@@ -1,9 +1,7 @@
 <?php
-        
-include "filename.php";
-$fileReader = fopen($filename, "r+") or die("Unable to open file for reading.");
-$status = trim(fread($fileReader,filesize($filename)));
-fclose($fileReader);
-echo "{ \"status\" : \"" . $status . "\" }";
+
+$status = exec("/var/www/html/dev/garage.sh status 2>&1");
+
+echo "{ \"status\" : \"" . $status . "\"}";
 
 ?>

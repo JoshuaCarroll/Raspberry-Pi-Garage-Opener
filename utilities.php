@@ -6,10 +6,10 @@ error_reporting(E_ALL);
 
 // Database connection settings
 class DbSettings {
-    public static $Address = '127.0.0.1';
+    public static $Address = 'localhost';
     public static $Username = 'root';
     public static $Password = 'tiger';
-    public static $Schema = 'Garage';
+    public static $Schema = 'garage';
 }
 
 // =======================================================
@@ -18,7 +18,7 @@ class DbSettings {
 
 function getSetting($setting) {
     $returnValue = "";
-    
+
     $con = new mysqli(DbSettings::$Address,DbSettings::$Username,DbSettings::$Password,DbSettings::$Schema);
 
     if (mysqli_connect_errno()) {
@@ -29,8 +29,8 @@ function getSetting($setting) {
             $stmt->bind_param("s", $setting);
             $stmt->execute();
             $stmt->bind_result($outValue);
-            
-            while ($stmt->fetch()) 
+
+            while ($stmt->fetch())
             {
                 $returnValue = $outValue;
                 break; // Only one anyway. Just keeping the while for an example.
@@ -38,7 +38,7 @@ function getSetting($setting) {
         }
     }
     return $returnValue;
-    
+
     $con->close();
 }
 
@@ -47,7 +47,7 @@ class Settings {
     public static $garageURL = NULL;
     public static $IftttKey = NULL;
     public static $KnownIntermediaries = NULL;
-    
+
     public function __construct() {
         if ( (!isset(self::$garageURL)) || (!isset(self::$IftttKey)) || (!isset(self::$KnownIntermediaries)))  {
             self::initializeStStateArr();
